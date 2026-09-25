@@ -15,70 +15,99 @@ export const EducationSection: React.FC<EducationSectionProps> = ({ isDark }) =>
           <div className="text-xs font-mono uppercase tracking-wider text-cyan-400 font-semibold mb-2">
             07. Academic Foundation
           </div>
-          <h2 className="text-2xl sm:text-4xl font-display font-bold tracking-tight text-balance">
+          <h2
+            className={`text-2xl sm:text-4xl font-display font-bold tracking-tight ${
+              isDark ? 'text-slate-100' : 'text-slate-900'
+            }`}
+          >
             Education
           </h2>
         </div>
 
-        {/* Education Card */}
-        <div
-          className={`p-6 sm:p-9 rounded-2xl border transition-all ${
-            isDark ? 'bg-slate-900/50 border-slate-800' : 'bg-white border-slate-200 shadow-sm'
-          }`}
-        >
-          <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 pb-6 border-b border-slate-200 dark:border-slate-800">
-            <div className="flex items-start gap-4">
-              <div className="p-3.5 rounded-xl bg-cyan-500/10 text-cyan-400 shrink-0">
-                <GraduationCap className="w-6 h-6" />
+        {/* Education Cards */}
+        <div className="space-y-6">
+          {EDUCATION_DATA.map((education, index) => (
+            <div
+              key={`${education.institution}-${index}`}
+              className={`p-6 sm:p-8 rounded-2xl border transition-all ${
+                isDark
+                  ? 'bg-slate-900/50 border-slate-800'
+                  : 'bg-white border-slate-200 shadow-sm'
+              }`}
+            >
+              {/* Institution + Duration */}
+              <div className="flex flex-col md:flex-row md:items-start justify-between gap-5">
+                <div className="flex items-start gap-4">
+                  <div className="p-3.5 rounded-xl bg-cyan-500/10 text-cyan-400 shrink-0">
+                    {index === 0 ? (
+                      <GraduationCap className="w-6 h-6" />
+                    ) : index === 1 ? (
+                      <Layers className="w-6 h-6" />
+                    ) : (
+                      <BookOpen className="w-6 h-6" />
+                    )}
+                  </div>
+
+                  <div>
+                    <h3
+                      className={`text-lg sm:text-xl font-display font-bold ${
+                        isDark ? 'text-slate-100' : 'text-slate-900'
+                      }`}
+                    >
+                      {education.institution}
+                    </h3>
+
+                    <p className="text-xs sm:text-sm font-mono text-cyan-400 mt-1">
+                      {education.duration}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Score */}
+                {education.score && (
+                  <span className="inline-block text-xs font-mono px-3 py-1.5 rounded-lg border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 font-semibold shrink-0">
+                    {education.score}
+                  </span>
+                )}
               </div>
-              <div>
-                <span className="text-xs font-mono text-cyan-400 font-medium">
-                  {EDUCATION_DATA.yearStatus}
+
+              {/* Qualification */}
+              <div className="mt-5 pl-0 sm:pl-[4.25rem]">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400">
+                  Qualification
                 </span>
-                <h3 className="text-xl sm:text-2xl font-display font-bold text-slate-100 mt-0.5">
-                  {EDUCATION_DATA.degree}
-                </h3>
-                <p className="text-xs sm:text-sm font-semibold text-slate-300 mt-1">
-                  Specialization: {EDUCATION_DATA.specialization}
-                </p>
-                <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
-                  {EDUCATION_DATA.institution}
-                </p>
-              </div>
-            </div>
 
-            <div className="shrink-0">
-              <span className="inline-block text-xs font-mono px-3 py-1 rounded-lg border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 font-semibold">
-                Status: 2nd Year
-              </span>
-            </div>
-          </div>
-
-          {/* Academic Focus & Foundations */}
-          <div className="mt-6">
-            <span className="text-xs font-mono uppercase tracking-wider text-slate-400 block mb-3">
-              Core Coursework & Learning Focus:
-            </span>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {EDUCATION_DATA.focusAreas.map((area, idx) => (
-                <div
-                  key={idx}
-                  className={`p-3.5 rounded-xl border text-xs leading-relaxed flex items-start gap-2.5 ${
-                    isDark ? 'bg-slate-950/40 border-slate-800' : 'bg-slate-50 border-slate-200'
+                <p
+                  className={`text-sm sm:text-base font-semibold mt-1 ${
+                    isDark ? 'text-slate-200' : 'text-slate-800'
                   }`}
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0 mt-1.5" />
-                  <span className="text-slate-300">{area}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+                  {education.qualification}
+                </p>
 
-          {/* Authentic note */}
-          <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800 text-[11px] font-mono text-slate-400 flex items-center justify-between">
-            <span>BVRIT Hyderabad College of Engineering for Women</span>
-            <span className="text-cyan-400">Strictly Authentic Academic Record</span>
-          </div>
+                {/* Description */}
+                <p
+                  className={`text-xs sm:text-sm leading-relaxed mt-2 max-w-4xl ${
+                    isDark ? 'text-slate-400' : 'text-slate-600'
+                  }`}
+                >
+                  {education.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Authentic note */}
+        <div
+          className={`mt-6 pt-4 border-t text-[11px] font-mono flex items-center justify-between gap-4 ${
+            isDark
+              ? 'border-slate-800 text-slate-400'
+              : 'border-slate-200 text-slate-500'
+          }`}
+        >
+          <span>BVRIT Hyderabad College of Engineering for Women</span>
+          <span className="text-cyan-400">Academic Record</span>
         </div>
       </div>
     </section>
