@@ -45,9 +45,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ isDark }) => {
             >
               <div className="p-3.5 rounded-xl border border-slate-800/80 bg-slate-900/30">
                 <span className="text-slate-400 block mb-1 font-mono">Current Status</span>
-                <span className="font-semibold text-slate-100">
-                  2nd-Year B.Tech Student (Undergraduate)
-                </span>
+            <span className="font-semibold text-slate-100">
+              B.Tech CSE (AI/ML) Undergraduate
+            </span>
               </div>
               <div className="p-3.5 rounded-xl border border-slate-800/80 bg-slate-900/30">
                 <span className="text-slate-400 block mb-1 font-mono">Institution</span>
