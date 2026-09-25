@@ -275,6 +275,11 @@ export const SKILLS_DATA: SkillGroup[] = [
     category: 'Tools & Workflow',
     skills: ['Git', 'GitHub', 'VS Code', 'REST APIs'],
     note: 'Collaborative version control and API communication tools'
+  },
+    {
+    category: 'Languages',
+    skills: ['English', 'Telugu'],
+    note: 'Languages I use for communication, collaboration, and learning.',
   }
 ];
 
