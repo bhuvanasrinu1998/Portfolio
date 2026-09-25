@@ -20,28 +20,34 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isDark }) => {
     setTimeout(() => setCopiedEmail(false), 2200);
   };
 
-const handleSubmit = async (e: React.FormEvent) => {
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
 
-  if (!name.trim() || !email.trim() || !message.trim()) return;
+  if (!name.trim() || !email.trim() || !message.trim()) {
+    return;
+  }
 
   setIsSubmitting(true);
+  setSubmitted(false);
 
   try {
-    const formData = new FormData();
+    const formData = new FormData(e.currentTarget);
 
     formData.append('access_key', '7162b302-149d-4bc3-b5cb-45f06a08570f');
-    formData.append('name', name);
-    formData.append('email', email);
-    formData.append('message', message);
     formData.append('subject', `New Portfolio Message from ${name}`);
 
     const response = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
-      body: formData,
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(Object.fromEntries(formData)),
     });
 
     const data = await response.json();
+
+    console.log('Web3Forms response:', data);
 
     if (data.success) {
       setSubmitted(true);
@@ -53,9 +59,13 @@ const handleSubmit = async (e: React.FormEvent) => {
         setSubmitted(false);
       }, 5000);
     } else {
-      alert('Something went wrong. Please try again.');
+      alert(
+        data.message ||
+          'Web3Forms could not receive your message. Please try again.'
+      );
     }
   } catch (error) {
+    console.error('Web3Forms error:', error);
     alert('Unable to send the message. Please try again later.');
   } finally {
     setIsSubmitting(false);
@@ -197,6 +207,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                   </label>
                   <input
                     type="text"
+                    name="name"
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -213,6 +224,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                   </label>
                   <input
                     type="email"
+                    name="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -228,6 +240,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                     Message <span className="text-cyan-400">*</span>
                   </label>
                   <textarea
+                    name="message"
                     required
                     rows={4}
                     value={message}
