@@ -17,13 +17,12 @@ export interface Project {
 }
 
 export interface EducationItem {
-  degree: string;
-  specialization: string;
   institution: string;
-  yearStatus: string;
-  focusAreas: string[];
+  duration: string;
+  qualification: string;
+  score?: string;
+  description: string;
 }
-
 export interface SkillGroup {
   category: string;
   skills: string[];
@@ -42,7 +41,7 @@ export interface HackathonEntry {
 export interface CertificationEntry {
   title: string;
   organization: string;
-  type: 'Certificate of Participation' | 'Certificate of Completion';
+  type: 'Certificate of Participation' | 'Certificate of Completion'| 'In Progress';
   details?: string;
 }
 
@@ -52,13 +51,13 @@ export const PERSONAL_INFO = {
   primaryHeadline: 'Computer Science Engineering Student | AI/ML Enthusiast | Developer',
   supportingText:
     'Building practical technology solutions through AI, software development, and real-world problem solving.',
-  secondaryText:
-    '2nd-year B.Tech CSE (AI/ML) student passionate about building, learning, collaborating, and turning ideas into working applications.',
+secondaryText:
+  'B.Tech CSE (AI/ML) student passionate about building, learning, collaborating, and turning ideas into working applications.',
   college: 'BVRIT Hyderabad College of Engineering for Women',
   degree: 'B.Tech — Computer Science and Engineering',
   specialization: 'Artificial Intelligence & Machine Learning',
-  yearStatus: '2nd Year',
-  email: 'bhuvanasrinu1998@gmail.com',
+  yearStatus: 'Undergraduate',
+  email: '25wh1a6673@bvrithyderabad.edu.in',
   github: 'https://github.com/bhuvanasrinu1998',
   linkedin: 'https://www.linkedin.com/in/bhuvana-kruthi-bandarupalli-861b96377/',
   location: 'Hyderabad, India',
@@ -66,23 +65,44 @@ export const PERSONAL_INFO = {
 };
 
 export const ABOUT_TEXT = [
-  "I am a 2nd-year B.Tech student pursuing Computer Science and Engineering with a specialization in Artificial Intelligence & Machine Learning at BVRIT Hyderabad College of Engineering for Women.",
+  "I am a B.Tech student pursuing Computer Science and Engineering with a specialization in Artificial Intelligence & Machine Learning at BVRIT Hyderabad College of Engineering for Women.",
   "I enjoy building practical applications, exploring Artificial Intelligence and Machine Learning, and working across software and full-stack development. I am especially passionate about participating in hackathons and technical competitions, where I get to collaborate with multidisciplinary teams, rapidly experiment with new technologies, and tackle real-world problems.",
   "Participating in hackathons has given me invaluable hands-on opportunities to bridge the gap between classroom theory and real execution—taking a problem statement or idea from an initial concept to a functioning software prototype under time and design constraints."
 ];
 
-export const EDUCATION_DATA: EducationItem = {
-  degree: 'B.Tech — Computer Science and Engineering',
-  specialization: 'Artificial Intelligence & Machine Learning',
-  institution: 'BVRIT Hyderabad College of Engineering for Women',
-  yearStatus: '2nd Year Undergraduate Student',
-  focusAreas: [
-    'Foundational Computer Science: Data Structures, Algorithms, Object-Oriented Programming (Java/Python)',
-    'AI/ML Foundations: Artificial Intelligence concepts, Machine Learning workflows, and recommendation logic',
-    'Database & Systems: Relational Database Management Systems (SQL/MySQL) and operating principles',
-    'Applied Software: Web development architectures, REST APIs, and collaborative version control (Git)'
-  ]
-};
+export const EDUCATION_DATA: EducationItem[] = [
+  {
+    institution: 'BVRIT Hyderabad College of Engineering for Women',
+    duration: 'August 2025 – Present',
+    qualification: 'B.Tech — Computer Science and Engineering (AI/ML)',
+    score: 'CGPA: 8.34',
+    description:
+      'Pursuing undergraduate studies with a focus on Computer Science, Artificial Intelligence, and Machine Learning. Building strong foundations in software development, problem solving, databases, and applied AI/ML.',
+  },
+  {
+    institution: 'NxtWave — CCBP 4.0 Academy',
+    duration: 'March 2026 – Present',
+    qualification: 'Full Stack Web Development — Industry-Ready Trainee',
+    description:
+      'Developing practical full-stack web development skills through hands-on learning, coding practice, and application development with modern web technologies.',
+  },
+  {
+    institution: 'SR Junior College',
+    duration: 'June 2023 – March 2025',
+    qualification: 'Intermediate Education — Classes 11 & 12',
+    score: 'Percentage: 93.1%',
+    description:
+      'Completed intermediate education with strong foundational coursework in Mathematics, Physics, and Chemistry.',
+  },
+  {
+    institution: 'Sri Chaitanya International Olympiad School',
+    duration: 'June 2022 – April 2023',
+    qualification: 'Higher Secondary Education',
+    score: 'GPA: 9.2',
+    description:
+      'Completed higher secondary education with a strong academic foundation and emphasis on core subjects and analytical learning.',
+  },
+];
 
 export const FEATURED_PROJECTS: Project[] = [
   {
@@ -215,6 +235,12 @@ export const CERTIFICATIONS_DATA: CertificationEntry[] = [
     organization: 'TEDx BVRIT Hyderabad',
     type: 'Certificate of Participation',
     details: 'Participated in institutional TEDx innovation & thought-leadership conference.'
+  },
+  {
+    title: 'Google DeepMind Learning Track',
+    organization: 'Google DeepMind',
+    type: 'In Progress',
+    details:'Currently pursuing the Google DeepMind Learning Track to strengthen foundational and applied AI knowledge.',
   }
 ];
 
