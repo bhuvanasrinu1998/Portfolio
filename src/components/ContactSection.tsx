@@ -20,20 +20,47 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isDark }) => {
     setTimeout(() => setCopiedEmail(false), 2200);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!name.trim() || !email.trim() || !message.trim()) return;
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+  if (!name.trim() || !email.trim() || !message.trim()) return;
+
+  setIsSubmitting(true);
+
+  try {
+    const formData = new FormData();
+
+    formData.append('access_key', '7162b302-149d-4bc3-b5cb-45f06a08570f');
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('message', message);
+    formData.append('subject', `New Portfolio Message from ${name}`);
+
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
       setSubmitted(true);
       setName('');
       setEmail('');
       setMessage('');
-      setTimeout(() => setSubmitted(false), 5000);
-    }, 600);
-  };
+
+      setTimeout(() => {
+        setSubmitted(false);
+      }, 5000);
+    } else {
+      alert('Something went wrong. Please try again.');
+    }
+  } catch (error) {
+    alert('Unable to send the message. Please try again later.');
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   return (
     <section id="contact" className="py-24 px-4 sm:px-6 relative">
