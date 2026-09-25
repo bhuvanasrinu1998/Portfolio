@@ -45,25 +45,30 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       body: JSON.stringify(Object.fromEntries(formData)),
     });
 
-    const data = await response.json();
+const data = await response.json();
 
-    console.log('Web3Forms response:', data);
+console.log('Web3Forms HTTP status:', response.status);
+console.log('Web3Forms response:', data);
 
-    if (data.success) {
-      setSubmitted(true);
-      setName('');
-      setEmail('');
-      setMessage('');
+alert(
+  `Web3Forms response:\n\nStatus: ${response.status}\nSuccess: ${data.success}\nMessage: ${data.message || 'No message returned'}`
+);
 
-      setTimeout(() => {
-        setSubmitted(false);
-      }, 5000);
-    } else {
-      alert(
-        data.message ||
-          'Web3Forms could not receive your message. Please try again.'
-      );
-    }
+if (data.success) {
+  setSubmitted(true);
+  setName('');
+  setEmail('');
+  setMessage('');
+
+  setTimeout(() => {
+    setSubmitted(false);
+  }, 5000);
+} else {
+  alert(
+    data.message ||
+      'Web3Forms could not receive your message. Please try again.'
+  );
+}
   } catch (error) {
     console.error('Web3Forms error:', error);
     alert('Unable to send the message. Please try again later.');
