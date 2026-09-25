@@ -84,7 +84,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ isDark }) => {
 
         {/* Authentic Engineering Note */}
         <div className="mt-8 text-center text-xs text-slate-400">
-          Framed authentically as active technologies I work with as a 2nd-year B.Tech CSE (AI/ML) student, without inflated claims of senior proficiency.
+          Framed authentically as active technologies I work with as a B.Tech CSE (AI/ML) undergraduate, without inflated claims of senior proficiency.
         </div>
       </div>
     </section>
