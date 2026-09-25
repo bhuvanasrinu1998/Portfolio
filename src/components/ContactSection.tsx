@@ -50,10 +50,6 @@ const data = await response.json();
 console.log('Web3Forms HTTP status:', response.status);
 console.log('Web3Forms response:', data);
 
-alert(
-  `Web3Forms response:\n\nStatus: ${response.status}\nSuccess: ${data.success}\nMessage: ${data.message || 'No message returned'}`
-);
-
 if (data.success) {
   setSubmitted(true);
   setName('');
