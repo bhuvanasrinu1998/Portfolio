@@ -41,7 +41,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isDark, onOpenResume }
           <span className="inline-block w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
           <span>BVRIT Hyderabad College of Engineering for Women</span>
           <span aria-hidden="true" className="text-slate-600">·</span>
-          <span>2nd-Year B.Tech CSE (AI/ML)</span>
+          <span>B.Tech CSE (AI/ML)</span>
         </div>
 
         {/* Primary Name */}
@@ -164,7 +164,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isDark, onOpenResume }
           <Terminal className="w-3.5 h-3.5 text-cyan-400" />
           <span>target: Microsoft Technical Evaluation & Hackathon Showcase</span>
           <span className="text-slate-600">|</span>
-          <span className="text-emerald-400">status: active 2nd-year student</span>
+          <span className="text-emerald-400">status: actively building & learning</span>
         </div>
       </div>
     </section>
